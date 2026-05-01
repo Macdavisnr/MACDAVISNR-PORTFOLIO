@@ -6,7 +6,8 @@ const projectList = [
       "Designed a modern storefront with responsive UI, product filters, and checkout flows.",
     stack: ["React", "TypeScript", "Tailwind", "Stripe"],
     github: "https://github.com/Macdavisnr/STORE.NR",
-    live: "https://store-nr-git-main-macdavisnrs-projects.vercel.app",
+    live: "https://store-nr.vercel.app",
+    demoAvailable: true,
   },
   {
     title: "OnboardingForm Dashboard",
@@ -15,7 +16,8 @@ const projectList = [
       "Built a dashboard for sign-up management, analytics, and user approval workflows.",
     stack: ["React", "TypeScript", "Chart.js", "Firebase"],
     github: "https://github.com/Macdavisnr/Mac-OnboardingForm",
-    live: "https://mac-onboarding-form-git-main-macdavisnrs-projects.vercel.app",
+    live: "https://mac-onboarding-form.vercel.app",
+    demoAvailable: true,
   },
   {
     title: "Outsourcing Board Web App",
@@ -24,7 +26,8 @@ const projectList = [
       "Created a job marketplace with listings, filters, reusable components, and client-side search.",
     stack: ["React", "Tailwind", "Vite", "REST API"],
     github: "https://github.com/yourusername/outsourcing-board",
-    live: "https://your-live-link.com",
+    live: "",
+    demoAvailable: false,
   },
 ];
 
@@ -80,14 +83,25 @@ const Projects = () => {
                 >
                   GitHub
                 </a>
-                <a
-                  href={project.live}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-200 transition duration-300 hover:border-cyan-500 hover:text-cyan-300"
-                >
-                  Live Demo
-                </a>
+                {project.demoAvailable ? (
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-200 transition duration-300 hover:border-cyan-500 hover:text-cyan-300"
+                  >
+                    Live Demo
+                  </a>
+                ) : (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-200 transition duration-300 hover:border-cyan-500 hover:text-cyan-300"
+                  >
+                    View Code
+                  </a>
+                )}
               </div>
             </div>
           ))}
