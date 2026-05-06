@@ -1,7 +1,11 @@
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 
-const Contact = () => {
+type ContactProps = {
+  darkMode: boolean;
+};
+
+const Contact = ({ darkMode }: ContactProps) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -32,17 +36,15 @@ const Contact = () => {
     setStatus("");
 
     try {
-      // Initialize EmailJS (use your public key)
       emailjs.init("we7drtHMLAJOTToPY");
 
-      // Send email
       await emailjs.send("service_df4sb5k", "template_87y71et", {
         to_email: "ikennannadirinwa@gmail.com",
         from_name: formData.name,
         from_email: formData.email,
         message: formData.message,
       });
-      // Send WhatsApp notification
+
       const whatsappMessage = encodeURIComponent(
         `New project inquiry from ${formData.name} (${formData.email}):\n\n${formData.message}`,
       );
@@ -62,32 +64,70 @@ const Contact = () => {
     }
   };
 
+  const panelClass = darkMode
+    ? "border-slate-800 bg-slate-950/90"
+    : "border-slate-200 bg-white";
+  const inputClass = darkMode
+    ? "border-slate-800 bg-slate-900 text-white"
+    : "border-slate-300 bg-white text-slate-950";
+
   return (
-    <section id="contact" className="min-h-screen px-6 lg:px-20 py-20">
+    <section
+      id="contact"
+      className={`min-h-screen px-6 py-20 transition-colors duration-300 lg:px-20 ${
+        darkMode ? "bg-slate-950" : "bg-slate-50"
+      }`}
+    >
       <div className="mx-auto max-w-6xl">
         <div className="text-center">
-          <p className="text-cyan-300 uppercase tracking-[0.4em] text-sm">
-            Let’s work together
+          <p
+            className={`uppercase tracking-[0.4em] text-sm ${
+              darkMode ? "text-cyan-300" : "text-blue-600"
+            }`}
+          >
+            Let's work together
           </p>
-          <h2 className="mt-3 text-5xl font-bold text-white">Contact Me</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-slate-400">
-            Ready to launch your next project? I’m available for freelance work,
+          <h2
+            className={`mt-3 text-5xl font-bold ${
+              darkMode ? "text-white" : "text-slate-950"
+            }`}
+          >
+            Contact Me
+          </h2>
+          <p
+            className={`mx-auto mt-4 max-w-2xl ${
+              darkMode ? "text-slate-400" : "text-slate-600"
+            }`}
+          >
+            Ready to launch your next project? I'm available for freelance work,
             contract roles, and collaborative opportunities.
           </p>
         </div>
 
         <div className="mt-14 grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-          <div className="rounded-4xl border border-slate-800 bg-slate-950/90 p-10 shadow-2xl">
-            <h3 className="text-2xl font-semibold text-white">
+          <div className={`rounded-4xl border p-10 shadow-2xl ${panelClass}`}>
+            <h3
+              className={`text-2xl font-semibold ${
+                darkMode ? "text-white" : "text-slate-950"
+              }`}
+            >
               Contact details
             </h3>
-            <p className="mt-4 text-slate-400 leading-7">
+            <p
+              className={`mt-4 leading-7 ${
+                darkMode ? "text-slate-400" : "text-slate-600"
+              }`}
+            >
               I respond quickly to thoughtful messages. Use the form to share
               your project details, or reach out directly through email and
               GitHub.
             </p>
 
-            <div className="mt-10 space-y-6 text-slate-300">
+            <div
+              className={`mt-10 space-y-6 ${
+                darkMode ? "text-slate-300" : "text-slate-700"
+              }`}
+            >
               <div>
                 <p className="text-cyan-300 text-sm uppercase tracking-[0.3em]">
                   Email
@@ -129,11 +169,15 @@ const Contact = () => {
           </div>
 
           <form
-            className="rounded-4xl border border-slate-800 bg-slate-950/90 p-10 shadow-2xl"
+            className={`rounded-4xl border p-10 shadow-2xl ${panelClass}`}
             onSubmit={handleSubmit}
           >
             <div className="grid gap-6">
-              <label className="space-y-2 text-slate-300">
+              <label
+                className={`space-y-2 ${
+                  darkMode ? "text-slate-300" : "text-slate-700"
+                }`}
+              >
                 <span className="text-sm uppercase tracking-[0.3em] text-slate-500">
                   Name
                 </span>
@@ -142,11 +186,15 @@ const Contact = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="w-full rounded-3xl border border-slate-800 bg-slate-900 px-5 py-4 text-white outline-none transition focus:border-cyan-500"
+                  className={`w-full rounded-3xl border px-5 py-4 outline-none transition focus:border-cyan-500 ${inputClass}`}
                   placeholder="Your name"
                 />
               </label>
-              <label className="space-y-2 text-slate-300">
+              <label
+                className={`space-y-2 ${
+                  darkMode ? "text-slate-300" : "text-slate-700"
+                }`}
+              >
                 <span className="text-sm uppercase tracking-[0.3em] text-slate-500">
                   Email
                 </span>
@@ -155,11 +203,15 @@ const Contact = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full rounded-3xl border border-slate-800 bg-slate-900 px-5 py-4 text-white outline-none transition focus:border-cyan-500"
+                  className={`w-full rounded-3xl border px-5 py-4 outline-none transition focus:border-cyan-500 ${inputClass}`}
                   placeholder="you@example.com"
                 />
               </label>
-              <label className="space-y-2 text-slate-300">
+              <label
+                className={`space-y-2 ${
+                  darkMode ? "text-slate-300" : "text-slate-700"
+                }`}
+              >
                 <span className="text-sm uppercase tracking-[0.3em] text-slate-500">
                   Message
                 </span>
@@ -167,7 +219,7 @@ const Contact = () => {
                   name="message"
                   value={formData.message}
                   onChange={handleInputChange}
-                  className="w-full min-h-40 rounded-3xl border border-slate-800 bg-slate-900 px-5 py-4 text-white outline-none transition focus:border-cyan-500"
+                  className={`w-full min-h-40 rounded-3xl border px-5 py-4 outline-none transition focus:border-cyan-500 ${inputClass}`}
                   placeholder="Tell me about your project..."
                 />
               </label>

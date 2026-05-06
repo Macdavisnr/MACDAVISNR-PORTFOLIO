@@ -1,24 +1,51 @@
-const Hero = () => {
+type HeroProps = {
+  darkMode: boolean;
+};
+
+const Hero = ({ darkMode }: HeroProps) => {
   return (
     <section
       id="home"
-      className="relative overflow-hidden min-h-screen px-6 lg:px-20 py-20"
+      className={`relative overflow-hidden min-h-screen px-6 py-20 transition-colors duration-300 lg:px-20 ${
+        darkMode ? "bg-slate-950" : "bg-slate-50"
+      }`}
     >
-      <div className="absolute inset-0 bg-cyan-500/10 opacity-20 pointer-events-none" />
-      <div className="absolute left-1/4 top-20 h-72 w-72 rounded-full bg-cyan-500/10 blur-3xl" />
-      <div className="absolute right-10 top-1/3 h-56 w-56 rounded-full bg-amber-400/10 blur-3xl" />
       <div className="relative z-10 mx-auto max-w-7xl">
-        <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] items-center rounded-4xl border border-slate-800 bg-slate-950/90 p-8 shadow-2xl backdrop-blur-xl">
+        <div
+          className={`grid gap-12 lg:grid-cols-[0.95fr_1.05fr] items-center rounded-4xl border p-8 shadow-2xl backdrop-blur-xl ${
+            darkMode
+              ? "border-slate-800 bg-slate-950/90"
+              : "border-slate-200 bg-white"
+          }`}
+        >
           <div className="relative flex justify-center">
-            <div className="relative rounded-4xl bg-linear-to-br from-cyan-500/10 via-slate-900 to-slate-950 p-6 shadow-2xl">
-              <div className="overflow-hidden rounded-[1.8rem] border border-slate-800 bg-slate-900">
+            <div
+              className={`relative rounded-4xl bg-linear-to-br p-6 shadow-2xl ${
+                darkMode
+                  ? "from-cyan-500/10 via-slate-900 to-slate-950"
+                  : "from-cyan-100 via-white to-blue-100"
+              }`}
+            >
+              <div
+                className={`overflow-hidden rounded-[1.8rem] border ${
+                  darkMode
+                    ? "border-slate-800 bg-slate-900"
+                    : "border-slate-200 bg-slate-100"
+                }`}
+              >
                 <img
                   src="/profile.jpg"
                   alt="Macdavis Ikenna Nnadirinwa"
                   className="h-full w-full object-cover"
                 />
               </div>
-              <div className="absolute -right-3 -bottom-3 rounded-3xl border border-cyan-500/20 bg-slate-950/90 px-4 py-3 text-sm text-cyan-200 shadow-xl">
+              <div
+                className={`absolute -right-3 -bottom-3 rounded-3xl border px-4 py-3 text-sm shadow-xl ${
+                  darkMode
+                    ? "border-cyan-500/20 bg-slate-950/90 text-cyan-200"
+                    : "border-blue-200 bg-white text-blue-700"
+                }`}
+              >
                 Frontend Developer
               </div>
             </div>
@@ -31,30 +58,30 @@ const Hero = () => {
             </div>
 
             <div className="space-y-4">
-              <p className="text-sm uppercase tracking-[0.4em] text-slate-400">
+              <p className={`text-sm uppercase tracking-[0.4em] ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
                 Hello, I'm
               </p>
-              <h1 className="text-5xl font-bold tracking-tight text-white md:text-6xl">
+              <h1 className={`text-5xl font-bold tracking-tight md:text-6xl ${darkMode ? "text-white" : "text-slate-950"}`}>
                 Macdavis Ikenna Nnadirinwa
               </h1>
-              <p className="text-xl text-slate-300 max-w-2xl leading-relaxed">
+              <p className={`text-xl max-w-2xl leading-relaxed ${darkMode ? "text-slate-300" : "text-slate-600"}`}>
                 I craft polished, high-performance web apps using React,
                 TypeScript, and modern UI design.
               </p>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-3">
-              <div className="rounded-3xl border border-slate-800 bg-slate-900/80 p-5 text-left shadow-sm">
+              <div className={`rounded-3xl border p-5 text-left shadow-sm ${darkMode ? "border-slate-800 bg-slate-900/80" : "border-slate-200 bg-slate-50"}`}>
                 <p className="text-3xl font-semibold text-cyan-300">5+</p>
                 <p className="mt-2 text-sm text-slate-400">
                   Projects delivered
                 </p>
               </div>
-              <div className="rounded-3xl border border-slate-800 bg-slate-900/80 p-5 shadow-sm">
+              <div className={`rounded-3xl border p-5 shadow-sm ${darkMode ? "border-slate-800 bg-slate-900/80" : "border-slate-200 bg-slate-50"}`}>
                 <p className="text-3xl font-semibold text-amber-300">2+</p>
                 <p className="mt-2 text-sm text-slate-400">Years experience</p>
               </div>
-              <div className="rounded-3xl border border-slate-800 bg-slate-900/80 p-5 shadow-sm">
+              <div className={`rounded-3xl border p-5 shadow-sm ${darkMode ? "border-slate-800 bg-slate-900/80" : "border-slate-200 bg-slate-50"}`}>
                 <p className="text-3xl font-semibold text-cyan-300">React</p>
                 <p className="mt-2 text-sm text-slate-400">Modern web apps</p>
               </div>
@@ -64,7 +91,9 @@ const Hero = () => {
               <a
                 href="/Macdavis Ikenna Nnadirinwa CV.pdf"
                 download
-                className="group inline-flex items-center justify-center rounded-full border border-cyan-500 px-8 py-3 text-sm font-semibold text-white transition duration-300 hover:-translate-y-1 hover:bg-cyan-500"
+                className={`group inline-flex items-center justify-center rounded-full border border-cyan-500 px-8 py-3 text-sm font-semibold transition duration-300 hover:-translate-y-1 hover:bg-cyan-500 hover:text-white ${
+                  darkMode ? "text-white" : "text-cyan-700"
+                }`}
               >
                 Download CV
                 <span className="ml-3 inline-block transition-transform duration-300 group-hover:translate-x-1">
@@ -73,7 +102,11 @@ const Hero = () => {
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center rounded-full border border-slate-700 bg-slate-900/90 px-8 py-3 text-sm font-semibold text-slate-200 transition duration-300 hover:-translate-y-1 hover:bg-slate-800"
+                className={`inline-flex items-center justify-center rounded-full border px-8 py-3 text-sm font-semibold transition duration-300 hover:-translate-y-1 ${
+                  darkMode
+                    ? "border-slate-700 bg-slate-900/90 text-slate-200 hover:bg-slate-800"
+                    : "border-slate-300 bg-white text-slate-800 hover:bg-slate-100"
+                }`}
               >
                 Let’s collaborate
               </a>
